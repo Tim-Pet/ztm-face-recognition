@@ -1,1 +1,4 @@
 tsconfig.*
+*.config.*
+.eslintrc.js
+tailwind.config.js
