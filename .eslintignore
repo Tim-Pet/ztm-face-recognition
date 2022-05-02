@@ -2,3 +2,8 @@ tsconfig.*
 *.config.*
 .eslintrc.js
 tailwind.config.js
+node_modules
+public
+bin
+build
+dist

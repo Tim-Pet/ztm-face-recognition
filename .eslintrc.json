@@ -13,6 +13,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ignorePatterns": ["**/node_modules/**"],
     "ecmaFeatures": {
       "jsx": true
     },
@@ -28,6 +29,9 @@
       { "namedComponents": "arrow-function" }
     ],
     "@typescript-eslint/comma-dangle": ["error", "never"],
-    "tailwindcss/classnames-order": "off"
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "tailwindcss/classnames-order": "off",
+    "arrow-body-style": "off",
+    "object-curly-newline": ["off"]
   }
 }
