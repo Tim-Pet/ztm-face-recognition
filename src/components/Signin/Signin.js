@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Signin = () => {
+const Signin = ({ onRouteChange, loadUser }) => {
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
 
-  onEmailChange = (event) => {
+  const onEmailChange = (event) => {
     setSignInEmail(event.target.value);
   };
 
-  onPasswordChange = (event) => {
+  const onPasswordChange = (event) => {
     setSignInPassword(event.target.value);
+  };
+
+  const onSubmitSignIn = () => {
+    console.log(signInEmail, signInPassword);
   };
 
   return (
