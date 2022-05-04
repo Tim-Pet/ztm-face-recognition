@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
+import { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 // import Clarifai from 'clarifai';
 import FaceRecognition from './FaceRecognition';
 import ImageLinkForm from './ImageLinkForm/ImageLinkForm';

@@ -1,28 +1,33 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["ESNext", "dom"],
     "outDir": "lib",
     "removeComments": true,
     "target": "ES6",
-
     "baseUrl": "./",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "paths": {},
-
     "sourceMap": true,
     "sourceRoot": "/",
-
     "alwaysStrict": true,
     "allowUnreachableCode": false,
     "noImplicitAny": true,
     "strictNullChecks": true,
-
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": ["./**/*.ts", "./**/*.tsx"],
   "exclude": ["node_modules/**/*"]

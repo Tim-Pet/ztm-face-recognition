@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
+import { ChangeEvent, FormEvent, ReactElement } from 'react';
 
 type Props = {
   inputValue: string;

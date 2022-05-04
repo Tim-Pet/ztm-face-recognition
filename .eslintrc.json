@@ -28,9 +28,15 @@
       2,
       { "namedComponents": "arrow-function" }
     ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+
     "@typescript-eslint/comma-dangle": ["error", "never"],
     "@typescript-eslint/no-unused-vars": ["warn"],
+    "@typescript-eslint/space-before-blocks": "off",
+
     "tailwindcss/classnames-order": "off",
+
     "arrow-body-style": "off",
     "object-curly-newline": ["off"]
   }

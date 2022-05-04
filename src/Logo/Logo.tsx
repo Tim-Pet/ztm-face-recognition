@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import Tilt from 'react-parallax-tilt';
 
 const Logo = (): ReactElement => (
