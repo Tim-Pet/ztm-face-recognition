@@ -49,23 +49,20 @@ const App = () => {
 
   const onButtonSubmit = () => {
     setImageUrl(input);
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, input).then((response) => {
-      const boxList = [];
-      response.outputs[0].data.regions.map((region) => {
-        const newBox = region.region_info.bounding_box;
-        newBox.topRow = newBox.top_row * 100;
-        newBox.bottomRow = newBox.bottom_row * 100;
-        newBox.leftCol = newBox.left_col * 100;
-        newBox.rightCol = newBox.right_col * 100;
-        boxList.push(newBox);
+    app.models
+      .predict(Clarifai.FACE_DETECT_MODEL, input)
+      .then((response) => {
+        const boxList = [];
+        response.outputs[0].data.regions.map((region) => {
+          const newBox = region.region_info.bounding_box;
+          boxList.push(newBox);
+        });
+        setBoxes(boxList);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      setBoxes(boxList);
-    });
   };
-
-  useEffect(() => {
-    console.log(boxes);
-  }, [boxes]);
 
   const onRouteChange = (route) => {
     console.log(route);
