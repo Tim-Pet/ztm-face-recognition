@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 
@@ -34,6 +34,15 @@ const App = () => {
   const [boxes, setBoxes] = useState([]);
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [user, setUser] = useState({
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: '',
+  });
+
+  const baseUrl = 'http://localhost:3001';
 
   const onInputChange = (event) => {
     setInput(event.target.value);
@@ -66,9 +75,56 @@ const App = () => {
     setRoute(route);
   };
 
-  const onSubmitSignIn = () => {
-    setIsSignedIn(true);
-    setRoute('home');
+  const handleSignIn = (email, password) => {
+    fetch(`${baseUrl}/signin`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.id) {
+          const { id, name, email, entries, joined } = data;
+          setUser({ id, name, email, entries, joined });
+          setIsSignedIn(true);
+          setRoute('home');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleRegister = (email, password, name) => {
+    fetch(`${baseUrl}/register`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        name,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.id) {
+          const { id, name, email, entries, joined } = data;
+
+          setUser({ id, name, email, entries, joined });
+          setIsSignedIn(true);
+          setRoute('home');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -78,7 +134,7 @@ const App = () => {
       {route === 'home' ? (
         <div>
           <Logo />
-          <Rank name={'Tim'} entries={3} />
+          <Rank name={user.name} entries={user.entries} />
           <ImageLinkForm
             onInputChange={onInputChange}
             onButtonSubmit={onButtonSubmit}
@@ -86,11 +142,11 @@ const App = () => {
           <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
         </div>
       ) : route === 'signin' ? (
-        <Signin onRouteChange={onRouteChange} onSubmitSignIn={onSubmitSignIn} />
+        <Signin onRouteChange={onRouteChange} handleSignIn={handleSignIn} />
       ) : (
         <Register
           onRouteChange={onRouteChange}
-          onSubmitSignIn={onSubmitSignIn}
+          handleRegister={handleRegister}
         />
       )}
     </div>

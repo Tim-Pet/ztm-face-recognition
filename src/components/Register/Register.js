@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Register = ({ onSubmitSignIn, loadUser }) => {
+const Register = ({ handleRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -15,6 +15,11 @@ const Register = ({ onSubmitSignIn, loadUser }) => {
 
   const onPasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+
+  const onSubmitRegister = (event) => {
+    event.preventDefault();
+    handleRegister(email, password, name);
   };
 
   return (
@@ -65,7 +70,7 @@ const Register = ({ onSubmitSignIn, loadUser }) => {
           </fieldset>
           <div className="">
             <input
-              onClick={onSubmitSignIn}
+              onClick={onSubmitRegister}
               className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
               value="Register"

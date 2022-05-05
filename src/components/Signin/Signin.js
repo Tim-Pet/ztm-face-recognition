@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Signin = ({ onRouteChange, loadUser, onSubmitSignIn }) => {
+const Signin = ({ onRouteChange, handleSignIn }) => {
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
 
@@ -10,6 +10,11 @@ const Signin = ({ onRouteChange, loadUser, onSubmitSignIn }) => {
 
   const onPasswordChange = (event) => {
     setSignInPassword(event.target.value);
+  };
+
+  const onSubmitSignIn = (event) => {
+    event.preventDefault();
+    handleSignIn(signInEmail, signInPassword);
   };
 
   return (
