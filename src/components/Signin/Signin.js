@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Signin = ({ onRouteChange, loadUser }) => {
+const Signin = ({ onRouteChange, loadUser, onSubmitSignIn }) => {
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
 
@@ -10,10 +10,6 @@ const Signin = ({ onRouteChange, loadUser }) => {
 
   const onPasswordChange = (event) => {
     setSignInPassword(event.target.value);
-  };
-
-  const onSubmitSignIn = () => {
-    console.log(signInEmail, signInPassword);
   };
 
   return (
@@ -32,6 +28,7 @@ const Signin = ({ onRouteChange, loadUser }) => {
                 name="email-address"
                 id="email-address"
                 onChange={onEmailChange}
+                value={signInEmail}
               />
             </div>
             <div className="mv3">
@@ -44,6 +41,7 @@ const Signin = ({ onRouteChange, loadUser }) => {
                 name="password"
                 id="password"
                 onChange={onPasswordChange}
+                value={signInPassword}
               />
             </div>
           </fieldset>

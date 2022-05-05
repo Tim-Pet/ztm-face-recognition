@@ -33,6 +33,7 @@ const Register = ({ onSubmitSignIn, loadUser }) => {
                 name="name"
                 id="name"
                 onChange={onNameChange}
+                value={name}
               />
             </div>
             <div className="mt3">
@@ -45,6 +46,7 @@ const Register = ({ onSubmitSignIn, loadUser }) => {
                 name="email-address"
                 id="email-address"
                 onChange={onEmailChange}
+                value={email}
               />
             </div>
             <div className="mv3">
@@ -57,6 +59,7 @@ const Register = ({ onSubmitSignIn, loadUser }) => {
                 name="password"
                 id="password"
                 onChange={onPasswordChange}
+                value={password}
               />
             </div>
           </fieldset>

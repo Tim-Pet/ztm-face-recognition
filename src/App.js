@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 
@@ -34,13 +34,6 @@ const App = () => {
   const [boxes, setBoxes] = useState([]);
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [user, setUser] = useState({
-    id: '',
-    name: '',
-    email: '',
-    entries: 0,
-    joined: '',
-  });
 
   const onInputChange = (event) => {
     setInput(event.target.value);
@@ -65,32 +58,41 @@ const App = () => {
   };
 
   const onRouteChange = (route) => {
-    console.log(route);
+    if (route === 'signout') {
+      setIsSignedIn(false);
+    } else if (route === 'home') {
+      setIsSignedIn(true);
+    }
+    setRoute(route);
   };
 
-  const loadUser = (data) => {
-    console.log(data);
+  const onSubmitSignIn = () => {
+    setIsSignedIn(true);
+    setRoute('home');
   };
 
   return (
     <div className="App">
       <Particles className="particles" params={particlesOptions} />
       <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
-      {/* {route === 'home' ? ( */}
-      <div>
-        <Logo />
-        <Rank name={user.name} entries={user.entries} />
-        <ImageLinkForm
-          onInputChange={onInputChange}
-          onButtonSubmit={onButtonSubmit}
-        />
-        <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
-      </div>
-      {/* ) : route === 'signin' ? (
-        <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
+      {route === 'home' ? (
+        <div>
+          <Logo />
+          <Rank name={'Tim'} entries={3} />
+          <ImageLinkForm
+            onInputChange={onInputChange}
+            onButtonSubmit={onButtonSubmit}
+          />
+          <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
+        </div>
+      ) : route === 'signin' ? (
+        <Signin onRouteChange={onRouteChange} onSubmitSignIn={onSubmitSignIn} />
       ) : (
-        <Register loadUser={loadUser} onRouteChange={onRouteChange} />
-      )} */}
+        <Register
+          onRouteChange={onRouteChange}
+          onSubmitSignIn={onSubmitSignIn}
+        />
+      )}
     </div>
   );
 };
