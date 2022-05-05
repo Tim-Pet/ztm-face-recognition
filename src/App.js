@@ -49,11 +49,24 @@ const App = () => {
     if (boxes.length != 0) setBoxes([]);
   };
 
-  const onButtonSubmit = () => {
+  const handlePictureSubmit = () => {
     setImageUrl(input);
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, input)
       .then((response) => {
+        if (response) {
+          fetch(`${baseUrl}/image`, {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: user.id,
+            }),
+          })
+            .then((response) => response.json())
+            .then((count) => {
+              setUser({ ...user, entries: count });
+            });
+        }
         const boxList = [];
         response.outputs[0].data.regions.map((region) => {
           const newBox = region.region_info.bounding_box;
@@ -137,7 +150,7 @@ const App = () => {
           <Rank name={user.name} entries={user.entries} />
           <ImageLinkForm
             onInputChange={onInputChange}
-            onButtonSubmit={onButtonSubmit}
+            onPictureSubmit={handlePictureSubmit}
           />
           <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
         </div>
