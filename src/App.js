@@ -125,15 +125,14 @@ const App = () => {
         name,
       }),
     })
-      .then((resp) => resp.json())
+      .then((resp) => {
+        return resp.json();
+      })
       .then((data) => {
-        if (data.id) {
-          const { id, name, email, entries, joined } = data;
-
-          setUser({ id, name, email, entries, joined });
-          setIsSignedIn(true);
-          setRoute('home');
-        }
+        const { id, name, email, entries, joined } = data[0];
+        setUser({ id, name, email, entries, joined });
+        setIsSignedIn(true);
+        setRoute('home');
       })
       .catch((err) => {
         console.log(err);
