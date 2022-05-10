@@ -129,7 +129,7 @@ const App = () => {
         return resp.json();
       })
       .then((data) => {
-        const { id, name, email, entries, joined } = data[0];
+        const { id, name, email, entries, joined } = data;
         setUser({ id, name, email, entries, joined });
         setIsSignedIn(true);
         setRoute('home');
