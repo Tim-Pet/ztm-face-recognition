@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Navigation from './components/Navigation/Navigation';
@@ -11,10 +10,6 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 
 import './App.css';
-
-const app = new Clarifai.App({
-  apiKey: 'b6cd2b615d4c49e6b991dec3f7754ba1',
-});
 
 const particlesOptions = {
   particles: {
@@ -51,8 +46,14 @@ const App = () => {
 
   const handlePictureSubmit = () => {
     setImageUrl(input);
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, input)
+    fetch(`${baseUrl}/imageurl`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input,
+      }),
+    })
+      .then((response) => response.json())
       .then((response) => {
         if (response) {
           fetch(`${baseUrl}/image`, {
@@ -129,10 +130,12 @@ const App = () => {
         return resp.json();
       })
       .then((data) => {
-        const { id, name, email, entries, joined } = data;
-        setUser({ id, name, email, entries, joined });
-        setIsSignedIn(true);
-        setRoute('home');
+        if (data.id) {
+          const { id, name, email, entries, joined } = data;
+          setUser({ id, name, email, entries, joined });
+          setIsSignedIn(true);
+          setRoute('home');
+        }
       })
       .catch((err) => {
         console.log(err);
