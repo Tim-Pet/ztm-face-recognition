@@ -37,8 +37,8 @@ const App = () => {
     joined: '',
   });
 
-  const baseUrl = process.env.BASE_URL || 'http://localhost:3001';
-  console.log(process.env.BASE_URL);
+  const baseUrl = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
+  console.log(process.env.REACT_APP_BASE_URL);
 
   const onInputChange = (event) => {
     setInput(event.target.value);
