@@ -37,7 +37,7 @@ const App = () => {
     joined: '',
   });
 
-  const baseUrl = 'http://localhost:3001';
+  const baseUrl = 'https://sheltered-garden-35438.herokuapp.com';
 
   const onInputChange = (event) => {
     setInput(event.target.value);
