@@ -38,7 +38,6 @@ const App = () => {
   });
 
   const baseUrl = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
-  console.log(process.env.REACT_APP_BASE_URL);
 
   const onInputChange = (event) => {
     setInput(event.target.value);
