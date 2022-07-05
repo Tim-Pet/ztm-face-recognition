@@ -27,8 +27,8 @@ const App = () => {
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [boxes, setBoxes] = useState([]);
-  const [route, setRoute] = useState('signin');
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [route, setRoute] = useState('home'); //tmp state (should be signin)
+  const [isSignedIn, setIsSignedIn] = useState(true); //tmp state (should be false)
   const [user, setUser] = useState({
     id: '',
     name: '',
@@ -143,8 +143,8 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <Particles className="particles" params={particlesOptions} />
+    <div className='App'>
+      <Particles className='particles' params={particlesOptions} />
       <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
       {route === 'home' ? (
         <div>
