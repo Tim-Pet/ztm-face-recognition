@@ -8,6 +8,7 @@ import Register from './components/Register/Register';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
+import Modal from './components/Modal/Modal';
 
 import './App.css';
 
@@ -81,7 +82,7 @@ const App = () => {
   };
 
   const onRouteChange = (route) => {
-    if (route === 'signout') {
+    if (route === 'signout' || route === 'signin') {
       setIsSignedIn(false);
     } else if (route === 'home') {
       setIsSignedIn(true);
